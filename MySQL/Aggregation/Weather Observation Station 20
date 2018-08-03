@@ -1,0 +1,14 @@
+select
+round(x.lat_n, 4)
+from 
+station as x
+where (select 
+      count(lat_n)
+      from station
+      where lat_n < x.lat_n) 
+      =
+      (select
+      count(lat_n)
+      from station 
+      where lat_n > x.lat_n)
+;
